@@ -122,7 +122,7 @@ const [displayName, setDisplayName] = useState('');
                   </li>
                   <li>
                     <Link
-                      to="/editprofil"
+                      to="/edit"
                       className="block px-4 py-2 hover:bg-purple-100"
                       onClick={() => setProfileOpen(false)}
                     >

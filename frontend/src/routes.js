@@ -8,6 +8,7 @@ import Lowongan from './pages/Lowongan/Lowongan';
 import ProfilPage from './pages/Profil/profil';
 import Dashboard from './pages/admin/dashboard';
 import EditProfile from './pages/Profil/editprofil';
+import Edit from './pages/Profil/edit';
 import CreateProfile from './pages/Profil/createprofil';
 
 export default function AppRoutes() {
@@ -21,7 +22,10 @@ export default function AppRoutes() {
         <Route path="/tentangKami" element={<TentangKami />} />
         <Route path="/lowongan" element={<Lowongan />} />
         <Route path="/profil" element={<ProfilPage />} />
-        <Route path="/editprofil" element={<EditProfile />} />
+        {/* <Route path="/editprofil" element={<EditProfile />} />
+         */}
+
+        <Route path="/Edit" element={<Edit/>} />
         <Route path="/createprofile" element={<CreateProfile />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
