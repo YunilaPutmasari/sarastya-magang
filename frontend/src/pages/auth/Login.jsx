@@ -1,25 +1,29 @@
 import React, { useState } from "react";
-import api from "../../services/api";
+import { useNavigate } from 'react-router-dom';
+import { supabase } from "../../supabase"; // Pastikan ini benar
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+ const handleLogin = async (e) => {
+  e.preventDefault();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await api.post("/login", { email, password });
-      localStorage.setItem("token", res.data.token);
-      alert("Login sukses");
-    } catch {
-      alert("Login gagal");
-    }
-  };
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
+
+  if (error) {
+    alert("Login gagal: " + error.message);
+  } else {
+    alert("Login sukses!");
+    navigate("/lowongan");
+  }
+};
 
   return (
-   <div
-  className="min-h-screen bg-cover bg-center flex items-center justify-center relative"
->
+    <div className="min-h-screen bg-cover bg-sarastya-100 bg-center flex items-center justify-center relative">
       <div className="bg-sarastya-400 bg-opacity-90 shadow-xl rounded-xl p-10 max-w-md w-full">
         <div className="flex justify-center mb-6">
           <img
@@ -28,7 +32,9 @@ const LoginForm = () => {
             className="h-24 w-24 object-contain rounded-full shadow-md"
           />
         </div>
-        <h2 className="text-2xl font-bold text-center text-sarastya-800 mb-6">Login ke SarastyaTech</h2>
+        <h2 className="text-2xl font-bold text-center text-sarastya-800 mb-6">
+          Login ke SarastyaTech
+        </h2>
         <form onSubmit={handleLogin} className="space-y-4">
           <input
             type="email"
@@ -48,13 +54,16 @@ const LoginForm = () => {
           />
           <button
             type="submit"
-            className="w-full bg-sarastya-600 hover:bg-sarastya-800 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
+            className="w-full bg-sarastya-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
           >
             Masuk
           </button>
         </form>
         <p className="text-sm text-center text-gray-600 mt-4">
-          Belum punya akun? <a href="/register" className="text-blue-700 hover:underline">Daftar</a>
+          Belum punya akun?{" "}
+          <a href="/register" className="text-blue-700 hover:underline">
+            Daftar
+          </a>
         </p>
       </div>
     </div>

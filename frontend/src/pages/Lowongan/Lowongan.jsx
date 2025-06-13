@@ -1,7 +1,19 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 export default function Lowongan() {
+const navigate = useNavigate();
+  // Simulasi user login dan profil
+  const user = {
+    isLoggedIn: true, // ubah ke false untuk simulasi belum login
+    nama: "Budi",
+    email: "budi@example.com",
+    no_hp: "", // jika kosong, dianggap belum lengkap
+  };
+
+  const profileComplete = !!(user.nama && user.email && user.no_hp);
+
   const lowonganList = [
     {
       id: 1,
@@ -38,13 +50,30 @@ export default function Lowongan() {
     },
   ];
 
+  const handleApply = () => {
+    if (!user.isLoggedIn) {
+      alert("Silakan login terlebih dahulu.");
+    navigate("/login");
+
+    } else if (!profileComplete) {
+      alert("Silakan lengkapi data diri Anda di halaman profil.");
+navigate("/createprofile");
+
+    } else {
+      alert("Lamaran berhasil dikirim!");
+      // Tambahkan logic pengiriman lamaran ke backend di sini jika diperlukan
+    }
+  };
+
   return (
     <>
       <Navbar />
       <div className="p-6 max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-purple-800">Lowongan Magang Tersedia</h2>
         <p className="mb-8 text-gray-700">
-          Berikut adalah daftar lowongan magang di <span className="font-semibold text-purple-700">Sarastya Technology</span>. Pilih posisi yang sesuai dan segera lamar!
+          Berikut adalah daftar lowongan magang di{" "}
+          <span className="font-semibold text-purple-700">Sarastya Technology</span>.
+          Pilih posisi yang sesuai dan segera lamar!
         </p>
 
         <div className="space-y-8">
@@ -65,7 +94,10 @@ export default function Lowongan() {
                 </ul>
               </div>
 
-              <button className="mt-4 inline-block bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+              <button
+                onClick={handleApply}
+                className="mt-4 inline-block bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+              >
                 Lamar Sekarang
               </button>
             </div>

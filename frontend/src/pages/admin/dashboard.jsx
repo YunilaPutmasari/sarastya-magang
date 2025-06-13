@@ -20,14 +20,14 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* <div className="mt-10">
+      <div className="mt-10">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">Aktivitas Terbaru</h2>
         <ul className="bg-white shadow-md rounded-lg divide-y">
           <li className="p-4 hover:bg-gray-100">Admin menambahkan gambar ke Galeri</li>
           <li className="p-4 hover:bg-gray-100">Lowongan baru dipublikasikan</li>
           <li className="p-4 hover:bg-gray-100">Profil admin diperbarui</li>
         </ul>
-      </div> */}
+      </div>
     </div>
   );
 }

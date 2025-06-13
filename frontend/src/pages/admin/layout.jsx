@@ -1,16 +1,16 @@
-// app/(dashboard)/layout.jsx
-import { AppSidebar } from "@/components/AppSidebar";
+// src/pages/admin/layout.jsx
+import React from "react"
+import { AppSidebar } from "@/components/AppSidebar"
 
-export default function DashboardLayout({ children }) {
+const Layout = ({ children }) => {
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar */}
+    <div className="flex">
       <AppSidebar />
-
-      {/* Main Content */}
-      <main className="flex-1 p-6 bg-gray-100">
+      <main className="flex-1 p-4">
         {children}
       </main>
     </div>
-  );
+  )
 }
+
+export default Layout
